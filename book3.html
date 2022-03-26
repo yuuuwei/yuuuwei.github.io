@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="generator" content="Mobirise v4.3.5, mobirise.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="icon/alt.svg" type="image/x-icon">
+    <meta name="description" content="網頁描述">
+    <title>圖文混和(複)電子書範例</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="book-container">
+        <div id="flipbook-img" class="mx-auto">
+            <!--中文封面-->
+            <div>
+                <div class="custom-img-page-h">
+                    <img src="img/A20220301174831629.jpeg" class="cover-l">
+                    <p class="title-r">都會綠洲 Urban Oasis</p>
+                    <p class="title-sub-r">資料來源｜2021+桃園地景藝術節</p>
+                </div>
+            </div>
+            <div>
+                <div class="custom-img-page-h">
+                    <img src="img/河流的形狀/flowing-waters.jpg" class="img-r">
+                    <p class="mark-lg-l">河流的形狀｜LUA RIVERA</p>
+                    <p class="p-l">創作發想來自南崁溪。水道分離了人與河流之間的直接接觸，
+                        <br>限制人們進入其水域的通道。許多河流過去是充滿角度與線條的，
+                        <br>現在它們失去了曲線，而水域也變得平坦。
+                        <br>他們被城市征服，並被人類馴化。
+                        <br>藝術家希望人們能透過觀看作品，記住河流原始流動的形狀，
+                        <br>我們不過是生命流動的水，所運送的沙粒。
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="custom-img-page-h">
+                    <img src="img/開箱桃園 時光足跡/ALL_news_art_22C08_hevhi6km2c.jpg" class="img-l">
+                    <p class="mark-lg-r" style="font-size: 18.88px;">開箱桃園 時光足跡｜蔡歐寶</p>
+                    <p class="p-r">以推著機場行李箱推車駛向天際為概念作出發，
+                        <br>邀請觀者推著行李箱一起踏入未知天際。
+                        <br>而從石牆中看似突兀出現的天空景象，
+                        <br>象徵著突破框架與限制、突破互不理解的藩籬。
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="custom-img-page-h">
+                    <img src="img/4.png" class="img-r">
+                    <p class="mark-lg-l" style="font-size: 20.27px;">明 十六世紀 銅胎掐絲琺瑯鳧式爐</p>
+                    <p class="p-l">文物圖檔編號：C1A001514N000000000PAC <br> 朝代：商 <br> 類別：銅器 <br> 典藏尺寸：帶耳高23.1公分 器高1 9公分 <br> 口徑18.3公分 腹深7.5公分 <br> 功能：食器,禮器 <br> 質材：礦物/金屬/青銅
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="custom-img-page-h">
+                    <img src="img/5.png" class="img-l">
+                    <p class="mark-lg-r">清 嘉慶 青花鳳凰紋盤</p>
+                    <p class="p-r">文物圖檔編號：K1D000178N000000000PAB <br> 朝代：清 <br> 類別：雜項 <br> 典藏尺寸：全高6.6公分 長7.9公分 <br> 功能：陳設 <br> 質材：礦物/玉石珠寶/玉石
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="custom-img-page-h">
+                    <img src="img/6.png" class="cover-r">
+                    <p class="title-l">謝謝觀賞</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="toolbar">
+        <div id="prePage" class="tool-btn"></div>
+        <input type="text" id="pageInput">
+        <div id="allPage"></div>
+        <div id="nextPage" class="tool-btn"></div>
+        <div id="line"></div>
+        <a id="exit" href="index.html" class="tool-btn"></a>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/turn.min.js"></script>
+    <script>
+        //初始設定
+        $(document).ready(function() {
+            //建立架構
+            $("#flipbook-img").turn({            
+                width: 855,
+                height: 570,
+                display: "single",
+            });
+            //取得所有頁數
+            var allPage = $('#flipbook-img').turn('pages');
+            //設定所有頁面(數字)
+            $('#allPage').text('/' + allPage);
+            //設定現在頁面(輸入框)
+            $('#pageInput').val(1);
+            //適應螢幕
+            //resize();
+        });
+        //下一頁
+        $('#nextPage').click(function() {
+            //執行下一頁
+            $("#flipbook-img").turn('next');
+            //取得現在頁面
+            var nowPage = $('#flipbook-img').turn('page');
+            //設定現在頁面(輸入框)
+            $('#pageInput').val(nowPage);
+        });
+        //上一頁
+        $('#prePage').click(function() {
+            //執行上一頁
+            $("#flipbook-img").turn('previous');
+            //取得現在頁面
+            var nowPage = $('#flipbook-img').turn('page');
+            //設定現在頁面(輸入框)
+            $('#pageInput').val(nowPage);
+        });
+        //現在頁面被輸入
+        $('#pageInput').keypress(function(e) {
+            //檢查是否為ASCII13碼(換行)
+            if (e.charCode == 13) {
+                //取得輸入數值
+                var inputKey = $('#pageInput').val();
+                //取消聚焦(focus)
+                $('#pageInput').blur();
+                //將輸入數值轉換為數字
+                inputKey = parseInt(inputKey);
+                //取得所有頁數
+                var allPage = $('#flipbook-img').turn('pages');
+                //若輸入的不是數值跳出警告訊息
+                if (isNaN(inputKey)) {
+                    alert("請輸入數字");
+                    //若輸入的超出範圍則跳出警告訊息
+                } else if (inputKey > allPage || inputKey < 1) {
+                    alert("請輸入正確範圍內");
+                    //若都符合則執行切換頁面
+                } else {
+                    $('#flipbook-img').turn('page', inputKey);
+                }
+            }
+        });
+        //當用滑鼠切換畫面時
+        $("#flipbook-img").bind("turning", function(event,  page,  view)  {
+            //設定現在頁面(輸入框)
+            $('#pageInput').val(page);
+        });
+        //重新調整大小
+        /*
+        $(window).resize(function() {
+                resize();
+            })
+            function resize() {
+                if ($(document).width() <= 800) {
+                    $("#flipbook").turn("size", 380, 285);
+                } else {
+                    $("#flipbook").turn("size", 1200, 800);
+                }
+        }*/
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>圖文混和電子書範例</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style5.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="book-container">
+        <div id="flipbook" class="mx-auto">
+            <!--中文封面-->
+            <div>
+                <div class="custom-page">
+                    <img src="img/直1.png">
+                    <div class="center-v">
+                        <p class="cover-title center-p">故宮文物圖集</p>
+                        <p class="cover-p center-p">資料來源｜故宮OPEN DATA</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="custom-page">
+                    <img src="img/直2.png">
+                    <div>
+                        <p class="title">銅胎掐絲琺瑯鳧式爐</p>
+                        <p>文物圖檔編號：K1E001005N000000000PAB <br> 朝代：明 <br> 類別：琺瑯器 <br> 典藏尺寸：高24公分 長25公分 <br> 功能：香具,陳設 <br> 質材：礦物/金屬/銅
+                        </p>
+                        <p>銅胎，鍍金。釉層厚、透明而略龜裂。釉面頗多焊藥的污斑，掐絲流暢寫生鴨雁類造型之香炬，銅胎，爐蓋與器身在鳧腹處套合，焚香經鳧頸自口溢出。外表除鳧嘴及足蹼外，全身施掐絲羽毛紋，琺瑯釉層厚，底座的表層掐絲纏枝菊花，底中央陰刻「甲」字，是十六世紀前期的文物。爐蓋與器身在鳧腹處套合，焚香經鳧頸自口溢出。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="custom-page reverse">
+                    <img src="img/直3.png">
+                    <div>
+                        <p class="title">玉版 附紫檀木架</p>
+                        <p>文物圖檔編號：K1C000565N000000000PAD <br> 朝代：新石器時代 龍山文化晚期 至清代乾隆時期 <br> 類別：玉器 <br> 功能：禮器,陳設 <br> 質材：礦物/玉石珠寶/玉石 <br>
+                        </p>
+                        <p>此件成做於新石器時代龍山齊家系文化的梯形玉版，呈赭紅帶黃綠色，中間帶有斑點團塊。尺寸巨大，氣勢恢弘。進入清宮後，經內務府造辦處整理，配紫檀木架，作屏風使用。乾隆皇帝曾兩度吟詠此器。乾隆11年（1746）作〈漢玉屏風歌〉，除歌詠此器與玉所彰顯之德行外，更表現皇帝對其色澤質地的仔細觀察。因不忍破壞玉器表面，故命張若藹仿顏碑字體書寫後，將〈漢玉屏風歌〉一詩鐫刻於木架上。乾隆19年（1754）又作〈詠漢玉屏風疊舊作韻〉，並命玉匠將11及19年詩分別刻於玉版的兩面。木架另面刻有梁詩正、汪由敦、勵宗萬、張若靄、裘曰修。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="custom-page">
+                    <img src="img/直4.png">
+                    <div class="center-v">
+                        <p class="cover-title center-p">謝謝觀賞</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="toolbar">
+        <div id="prePage" class="tool-btn"></div>
+        <input type="text" id="pageInput">
+        <div id="allPage"></div>
+        <div id="nextPage" class="tool-btn"></div>
+        <div id="line"></div>
+        <a id="exit" href="index.html" class="tool-btn"></a>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/turn.min.js"></script>
+    <script>
+        //初始設定
+        $(document).ready(function() {
+            //建立架構
+            $("#flipbook").turn({            
+                width: 855,
+                height: 570,
+                display: "single",
+            });
+            //取得所有頁數
+            var allPage = $('#flipbook').turn('pages');
+            //設定所有頁面(數字)
+            $('#allPage').text('/' + allPage);
+            //設定現在頁面(輸入框)
+            $('#pageInput').val(1);
+            //適應螢幕
+            //resize();
+        });
+        //下一頁
+        $('#nextPage').click(function() {
+            //執行下一頁
+            $("#flipbook").turn('next');
+            //取得現在頁面
+            var nowPage = $('#flipbook').turn('page');
+            //設定現在頁面(輸入框)
+            $('#pageInput').val(nowPage);
+        });
+        //上一頁
+        $('#prePage').click(function() {
+            //執行上一頁
+            $("#flipbook").turn('previous');
+            //取得現在頁面
+            var nowPage = $('#flipbook').turn('page');
+            //設定現在頁面(輸入框)
+            $('#pageInput').val(nowPage);
+        });
+        //現在頁面被輸入
+        $('#pageInput').keypress(function(e) {
+            //檢查是否為ASCII13碼(換行)
+            if (e.charCode == 13) {
+                //取得輸入數值
+                var inputKey = $('#pageInput').val();
+                //取消聚焦(focus)
+                $('#pageInput').blur();
+                //將輸入數值轉換為數字
+                inputKey = parseInt(inputKey);
+                //取得所有頁數
+                var allPage = $('#flipbook').turn('pages');
+                //若輸入的不是數值跳出警告訊息
+                if (isNaN(inputKey)) {
+                    alert("請輸入數字");
+                    //若輸入的超出範圍則跳出警告訊息
+                } else if (inputKey > allPage || inputKey < 1) {
+                    alert("請輸入正確範圍內");
+                    //若都符合則執行切換頁面
+                } else {
+                    $('#flipbook').turn('page', inputKey);
+                }
+            }
+        });
+        //當用滑鼠切換畫面時
+        $("#flipbook").bind("turning", function(event,  page,  view)  {
+            //設定現在頁面(輸入框)
+            $('#pageInput').val(page);
+        });
+        //重新調整大小
+        /*
+        $(window).resize(function() {
+                resize();
+            })
+            function resize() {
+                if ($(document).width() <= 800) {
+                    $("#flipbook").turn("size", 380, 285);
+                } else {
+                    $("#flipbook").turn("size", 1200, 800);
+                }
+        }*/
+    </script>
+</body>
+
+</html>
